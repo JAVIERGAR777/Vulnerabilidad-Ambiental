@@ -27,7 +27,7 @@
             position: relative;
         }
 
-        #form-container, #section2 {
+        #form-container, #section2, #section3 {
             width: 100%;
             padding: 20px;
             border: 1px solid #ddd;
@@ -38,7 +38,7 @@
             height: 50%;
         }
 
-        #form-container h3, #section2 h3 {
+        #form-container h3, #section2 h3, #section3 h3 {
             color: #007BFF;
             font-size: 1.2em;
             margin-bottom: 20px;
@@ -87,13 +87,13 @@
                 height: 40%;
             }
 
-            #form-container, #section2 {
+            #form-container, #section2, #section3 {
                 margin-top: 20px;
                 padding: 15px;
                 height: 60%;
             }
 
-            #form-container h3, #section2 h3 {
+            #form-container h3, #section2 h3, #section3 h3 {
                 font-size: 1.2em;
             }
 
@@ -223,7 +223,23 @@
             <label for="espacios-vandalizados">2.7 Cantidad de plazas, parques y/o espacios destinados al uso recreativo vandalizados:</label>
             <input type="number" id="espacios-vandalizados" placeholder="Escribe un número..."><br>
 
-            <button type="submit">Finalizar</button>
+            <button type="submit" id="continue-btn-2">Continuar</button>
+        </form>
+    </div>
+    
+    <div id="section3" style="display:none">
+        <h3>3. Capilaridad Social </h3>
+        <form id="questionnaire-form-3">
+            <label for="sociedades-de-fomento">3.1 Club / Instituciones / Sociedades de Fomento (cantidad por calle):</label>
+            <input type="number" id="sociedades-de-fomento" placeholder="Escribe un número..."><br>
+
+            <label for="Merenderos">3.2 Merenderos / Comedores (cantidad por calle)</label>
+            <input type="number" id="Merenderos" placeholder="Escribe un número..."><br>
+
+            <label for="Iglesias">3.3 Iglesias - Parroquias (cantidad por calle):</label>
+            <input type="number" id="Iglesias" placeholder="Escribe un número..."><br>
+
+            <button type="submit">Enviar</button>
         </form>
     </div>
 
@@ -265,12 +281,20 @@
             zoomToAccuracy: true,
         }).addTo(map);
 
-        // Lógica para manejar el botón "Continuar"
+        // Lógica para manejar el botón "Continuar" en la primera sección
         document.getElementById('questionnaire-form').addEventListener('submit', function(e) {
             e.preventDefault();
             // Ocultar la primera sección y mostrar la segunda
             document.getElementById('form-container').style.display = 'none';
             document.getElementById('section2').style.display = 'block';
+        });
+
+        // Lógica para manejar el botón "Continuar" en la segunda sección
+        document.getElementById('continue-btn-2').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Ocultar la segunda sección y mostrar la tercera
+            document.getElementById('section2').style.display = 'none';
+            document.getElementById('section3').style.display = 'block';
         });
     </script>
 </body>
