@@ -3,255 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participación Comunitaria</title>
-    <!-- Estilos de Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <title>Mapa con Calles Seleccionables y Cuestionario</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             height: 100vh;
+            margin: 0;
         }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            width: 100%;
-        }
-        #container {
-            display: flex;
-            width: 100%;
-            height: calc(100vh - 60px);
-        }
+
         #map {
-            height: 100%;
-            width: 70%;
+            height: 50%;
+            width: calc(100% - 20px); /* Añadir espacio a los costados */
+            position: relative;
+            margin: 10px; /* Espacio alrededor del mapa */
         }
-        #sidebar {
-            height: 100%;
-            width: 30%;
+
+        #form-container {
+            width: 100%;
             padding: 20px;
-            background-color: #f4f4f4;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #e8f7ff;
+            overflow-y: auto;
+            margin-top: 20px;
+            height: 50%;
         }
-        .button-container {
-            text-align: center;
-            margin: 20px;
+
+        #form-container h3 {
+            color: #007BFF;
+            font-size: 1.5em;
+            margin-bottom: 20px;
         }
-        .button {
+
+        label {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 20px;
             background-color: #007BFF;
             color: white;
             border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
             border-radius: 5px;
-            width: 100%;
+            cursor: pointer;
+            font-size: 1.2em;
         }
-        .button:hover {
+
+        button:hover {
             background-color: #0056b3;
         }
-        #reason-container {
-            margin-top: 20px;
-            display: none;
+
+        button:active {
+            background-color: #003f7f;
         }
-        select {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            width: 100%;
-        }
-        .delete-button {
-            background-color: #DC3545;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            width: 100%;
-        }
-        .delete-button:hover {
-            background-color: #c82333;
-        }
-        #details-container {
-            margin-top: 20px;
-            display: none;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        #sendButton {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            width: 100%;
-            margin-top: 20px;
-            display: none;
-        }
-        #sendButton:hover {
-            background-color: #218838;
-        }
+
+        /* Estilo para dispositivos móviles */
         @media (max-width: 768px) {
-            #container {
-                flex-direction: column;
+            #map {
+                height: 40%; /* Mantener en 50% en pantallas pequeñas */
+                width: calc(100% - 10px); /* Menos espacio en móviles */
+                margin: 5px; /* Margen reducido para pantallas pequeñas */
             }
-            #map, #sidebar {
-                width: 100%;
+
+            #form-container {
+                margin-top: 20px;
+                padding: 15px;
+                height: 50%;
+            }
+
+            #form-container h3 {
+                font-size: 1.3em;
+            }
+
+            label {
+                font-size: 1em;
+            }
+
+            input[type="text"], input[type="number"], textarea, select {
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            button {
+                font-size: 1.1em;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Participación Comunitaria en Seguridad Ciudadana</h1>
-        <p>Haz clic en el mapa para marcar un lugar problemático y contribuir con tu comunidad.</p>
-    </header>
 
-    <div id="container">
-        <div id="map"></div>
+    <div id="map"></div>
 
-        <div id="sidebar">
-            <div class="button-container">
-                <button class="button" id="reportButton" disabled>Continuar con el reporte</button>
-            </div>
-            <div id="reason-container">
-                <label for="reason">Seleccione el motivo del reporte:</label>
-                <select id="reason">
-                    <option value="">Seleccione...</option>
-                    <option value="Basural">Basural</option>
-                    <option value="Auto quemado">Auto quemado</option>
-                    <option value="Otro">Otro</option>
-                </select>
-            </div>
-            <div id="details-container">
-                <label for="details">Detalles adicionales:</label>
-                <textarea id="details" placeholder="Escribe más detalles aquí..."></textarea>
-            </div>
-            <div class="button-container">
-                <button class="button" id="sendButton">Enviar Reporte</button>
-            </div>
-            <div class="button-container" id="deleteContainer" style="display: none;">
-                <button class="delete-button" id="deleteButton">Modificar Ubicación</button>
-            </div>
-        </div>
+    <div id="form-container">
+        <h3>1. Infraestructura Urbana</h3>
+        <form id="questionnaire-form">
+            <label for="line-id">ID de la línea:</label>
+            <input type="text" id="line-id" readonly><br>
+
+            <!-- Aquí vienen los otros campos del formulario -->
+            <button type="submit">Continuar</button>
+        </form>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
     <script>
-        const map = L.map('map').setView([-34.6037, -58.3816], 12);
+        var map = L.map('map').setView([-34.9461, -57.8846], 13); // Coordenadas de Buenos Aires
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap contributors'
+            attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        let marker = null;
-
-        map.on('click', (e) => {
-            if (marker) {
-                map.removeLayer(marker);
-            }
-            marker = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true }).addTo(map);
-            document.getElementById('reportButton').disabled = false;
-            document.getElementById('deleteContainer').style.display = 'block';
-        });
-
-        document.getElementById('reportButton').addEventListener('click', () => {
-            if (marker) {
-                document.getElementById('reason-container').style.display = 'block';
-                document.getElementById('reportButton').disabled = true;
-            }
-        });
-
-        document.getElementById('reason').addEventListener('change', () => {
-            const reason = document.getElementById('reason').value;
-            if (reason) {
-                document.getElementById('details-container').style.display = 'block';
-            } else {
-                document.getElementById('details-container').style.display = 'none';
-            }
-            document.getElementById('sendButton').style.display = 'block';
-        });
-
-        document.getElementById('sendButton').addEventListener('click', () => {
-            const reason = document.getElementById('reason').value;
-            const details = document.getElementById('details').value;
-            if (reason) {
-                const lat = marker.getLatLng().lat;
-                const lng = marker.getLatLng().lng;
-
-                const token = 'patzC8KqaZk7XJuAA';
-                const baseId = 'apphUiw67G89xGMuN';
-                const tableId = 'tblJ9FFRNPDlvZdvM';
-
-                const url = `https://api.airtable.com/v0/${baseId}/${tableId}`;
-                const data = {
-                    records: [
-                        {
-                            fields: {
-                                Latitud: lat,
-                                Longitud: lng,
-                                'Motivo del Reporte': reason,
-                                'Detalles Adicionales': details
-                            }
-                        }
-                    ]
-                };
-
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
+        // Cargar la capa pj.geojson
+        fetch('./pj.geojson') // Asegúrate de que la ruta sea correcta
+            .then(response => response.json())
+            .then(data => {
+                var pjLayer = L.geoJSON(data, {
+                    style: {
+                        color: 'green',  // Estilo de las líneas de la capa pj
+                        weight: 4
                     },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Reporte enviado correctamente:', data);
-                    alert('Reporte enviado correctamente.');
-                })
-                .catch(error => {
-                    console.error('Error al enviar el reporte:', error);
-                    alert('Error al enviar el reporte.');
-                });
+                    onEachFeature: function (feature, layer) {
+                        var lineId = feature.properties.ID || 'Sin ID'; // Extrae el 'ID' de la propiedad 'properties'
 
-                marker = null;
-                document.getElementById('reportButton').disabled = false;
-                document.getElementById('reason').value = '';
-                document.getElementById('reason-container').style.display = 'none';
-                document.getElementById('details-container').style.display = 'none';
-                document.getElementById('sendButton').style.display = 'none';
-                document.getElementById('deleteContainer').style.display = 'none';
-            }
-        });
+                        layer.on('click', function () {
+                            document.getElementById('line-id').value = lineId; // Mostrar ID de la línea en el formulario
+                        });
+                    }
+                }).addTo(map);
+            })
+            .catch(error => console.error('Error cargando pj.geojson:', error));
 
-        document.getElementById('deleteButton').addEventListener('click', () => {
-            if (marker) {
-                map.removeLayer(marker);
-                marker = null;
-                document.getElementById('reportButton').disabled = true;
-                document.getElementById('reason-container').style.display = 'none';
-                document.getElementById('details-container').style.display = 'none';
-                document.getElementById('sendButton').style.display = 'none';
-                document.getElementById('deleteContainer').style.display = 'none';
-            }
+        // Agregar control de ubicación
+        L.control.locate({
+            position: 'topright',  // Posición en la esquina superior derecha
+            strings: {
+                title: "Ver mi ubicación"
+            },
+            locateOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true, // Habilitar el seguimiento
+            keepCurrentZoomLevel: true, // Mantener el nivel de zoom actual
+            zoomToAccuracy: true, // Acercar cuando se localice
+        }).addTo(map);
+
+        // Opcional: Lógica para enviar el formulario
+        document.getElementById('questionnaire-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Formulario enviado. Gracias por tu respuesta!'); // Se puede cambiar según la siguiente acción.
         });
     </script>
 </body>
