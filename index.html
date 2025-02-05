@@ -26,7 +26,17 @@
             width: 100%;
             position: relative;
         }
-
+        
+        #segmento-seleccionado {
+            display: none; /* Ocultar inicialmente */
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
         .form-container {
             width: 100%;
             padding: 20px;
@@ -113,13 +123,26 @@
 
             button {
                 font-size: 1.1em;
-            }
+        
+            }#segmento-seleccionado {
+                margin-top: 20px;
+                display: none; /* Ocultar inicialmente */
+                margin-top: 10px;
+                background-color: #28a745;
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                text-align: center;
+            }    
         }
+
     </style>
 </head>
 <body>
 
     <div id="map"></div>
+
+    <div id="segmento-seleccionado">¡Has seleccionado un segmento!</div>
 
     <!-- Formulario A -->
     <div id="formA" class="form-container activo">
@@ -383,6 +406,7 @@
             <button type="submit">Finalizar</button>
         </form>
     </div>
+    
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
@@ -394,25 +418,28 @@
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // Cargar capa GeoJSON
-        fetch('./pj.geojson')
-            .then(response => response.json())
-            .then(data => {
-                var pjLayer = L.geoJSON(data, {
-                    style: {
-                        color: 'green',
-                        weight: 4
-                    },
-                    onEachFeature: function (feature, layer) {
-                        var lineId = feature.properties.ID || 'Sin ID';
+fetch('./pj.geojson')
+    .then(response => response.json())
+    .then(data => {
+        var pjLayer = L.geoJSON(data, {
+            style: {
+                color: 'green',
+                weight: 4
+            },
+            onEachFeature: function (feature, layer) {
+                var lineId = feature.properties.ID || 'Sin ID';
 
-                        layer.on('click', function () {
-                            document.getElementById('line-id').value = lineId;
-                        });
-                    }
-                }).addTo(map);
-            })
-            .catch(error => console.error('Error cargando pj.geojson:', error));
+                layer.on('click', function () {
+                    // Actualizar el campo "line-id"
+                    document.getElementById('line-id').value = lineId;
+
+                    // Mostrar el botón de confirmación
+                    document.getElementById('segmento-seleccionado').style.display = 'block';
+                });
+            }
+        }).addTo(map);
+    })
+    .catch(error => console.error('Error cargando pj.geojson:', error));
 
         L.control.locate({
             position: 'topright',
@@ -433,7 +460,8 @@
             // Mostrar el formulario solicitado
             document.getElementById(idFormulario).classList.add('activo');
         }
-
+        
+        
         // Lógica para manejar el botón "Finalizar"
         document.getElementById('questionnaire-formJ').addEventListener('submit', function(e) {
             e.preventDefault();
