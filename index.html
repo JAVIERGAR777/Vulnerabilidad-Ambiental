@@ -229,6 +229,23 @@
         <label for="espacios-vandalizados">B.7 Cantidad de plazas, parques y/o espacios destinados al uso recreativo vandalizados:</label>
         <input type="number" id="espacios-vandalizados" placeholder="Escribe un número..."><br>
 
+            <button type="button" onclick="mostrarFormulario('formC')">Continuar</button>
+        </form>
+    </div>
+
+    <!-- Formulario C -->
+    <div id="formC" class="form-container">
+        <h3>C.Capilaridad Social</h3>
+        <form id="questionnaire-formC">
+            <label for="instituciones">C.1 Club / Instituciones / Sociedades de Fomento (cantidad por calle):</label>
+            <input type="number" id="instituciones" placeholder="Escribe un número..."><br>
+
+            <label for="Merenderos">C.2 Merenderos / Comedores (cantidad por calle):</label>
+            <input type="number" id="Merenderos" placeholder="Escribe un número..."><br>
+
+            <label for="Iglesias">C.3 Iglesias - Parroquias (cantidad por calle):</label>
+            <input type="number" id="Iglesias" placeholder="Escribe un número..."><br>
+
             <button type="button" onclick="mostrarFormulario('formD')">Continuar</button>
         </form>
     </div>
@@ -241,10 +258,10 @@
             <input type="number" id="cantidad-lineas" placeholder="Escribe un número..."><br>
 
             <label for="Comisarias-destacamentos">D.2 Cantidad de comisarías / Destacamentos / Puestos de policía por calle:</label>
-            <input type="number" id="Merenderos" placeholder="Escribe un número..."><br>
+            <input type="number" id="Comisarias-destacamentos" placeholder="Escribe un número..."><br>
 
             <label for="Establecimientos-educativos">D.3 Cantidad de establecimientos educativos estatales y privados por calle:</label>
-            <input type="number" id="Iglesias" placeholder="Escribe un número..."><br>
+            <input type="number" id="Establecimientos-educativos" placeholder="Escribe un número..."><br>
 
             <button type="button" onclick="mostrarFormulario('formE')">Continuar</button>
         </form>
@@ -252,10 +269,22 @@
 
     <!-- Formulario E -->
     <div id="formE" class="form-container">
-        <h3>E. Espacios Verdes</h3>
+        <h3>E.Accesibilidad de transporte urbano y movilidad</h3>
         <form id="questionnaire-formE">
-            <label for="parques">E.1 Cantidad de parques:</label>
-            <input type="number" id="parques" placeholder="Escribe un número..."><br>
+            <label for="lineas-colectivo">E.1 Cantidad de líneas de colectivo y ramales:</label>
+            <input type="number" id="lineas-colectivo" placeholder="Escribe un número..."><br>
+
+            <label for="semaforos">E.2 Cantidad de semáforos:</label>
+            <input type="number" id="semaforos" placeholder="Escribe un número..."><br>
+
+            <label for="sendas">E.3 Cantidad de calles con sendas peatonales:</label>
+            <input type="number" id="sendas" placeholder="Escribe un número..."><br>
+
+            <label for="calles-señaletica">E.4 Cantidad de calles con señalética relacionada a normas de tránsito:</label>
+            <input type="number" id="calles-señaletica" placeholder="Escribe un número..."><br>
+
+            <label for="señaletica-relacionada">E.5 Cantidad de calles con señalética relacionada con la ubicación y la altura:</label>
+            <input type="number" id="señaletica-relacionada" placeholder="Escribe un número..."><br>
 
             <button type="button" onclick="mostrarFormulario('formF')">Continuar</button>
         </form>
@@ -263,10 +292,93 @@
 
     <!-- Formulario F -->
     <div id="formF" class="form-container">
-        <h3>F. Comercios</h3>
+        <h3>F.Arbolado y paisaje urbano</h3>
         <form id="questionnaire-formF">
-            <label for="comercios">F.1 Cantidad de comercios:</label>
-            <input type="number" id="comercios" placeholder="Escribe un número..."><br>
+            <label for="arboles-calle">F.1 Cantidad de árboles por calle:</label>
+            <input type="number" id="arboles-calle" placeholder="Escribe un número..."><br>
+
+            <button type="button" onclick="mostrarFormulario('formG')">Continuar</button>
+        </form>
+    </div>
+    
+
+    <!-- Formulario G -->
+    <div id="formG" class="form-container">
+        <h3>G.Arbolado y paisaje urbano</h3>
+        <form id="questionnaire-formG">
+            <label for="camara-privada">G.1 Cantidad de cámaras de videovigilancia privadas:</label>
+            <input type="number" id="camara-privada" placeholder="Escribe un número..."><br>
+
+            <label for="camara-publica">G.2 Cantidad de cámaras de videovigilancia públicas:</label>
+            <input type="number" id="camara-publica" placeholder="Escribe un número..."><br>
+
+            <label for="casetas">G.3 Cantidad de casetas municipales por calle:</label>
+            <input type="number" id="casetas" placeholder="Escribe un número..."><br>
+
+            <label for="puestos">G.4 Cantidad de puestos policiales por calle:</label>
+            <input type="number" id="puestos" placeholder="Escribe un número..."><br>
+
+            <button type="button" onclick="mostrarFormulario('formH')">Continuar</button>
+        </form>
+    </div>
+    
+    <!-- Formulario H -->
+    <div id="formH" class="form-container">
+        <h3>H.Actividad comercial ,industrial y financiera</h3>
+        <form id="questionnaire-formH">
+            <label for="venta-alimentos">H.1 Cantidad de comercios de venta de alimentos, indumentaria,tecnología / electrodomésticos:</label>
+            <input type="number" id="venta-alimentos" placeholder="Escribe un número..."><br>
+
+            <label for="servicios-personales">H.2 Cantidad comercios de venta de servicios personales (peluquerías, barberías, gimnasios, farmacias etc):</label>
+            <input type="number" id="servicios-personales" placeholder="Escribe un número..."><br>
+
+            <label for="talleres">H.3 Cantidad de talleres mecánicos:</label>
+            <input type="number" id="talleres" placeholder="Escribe un número..."><br>
+
+            <label for="fabricas">H.4 Cantidad de fábricas y/o establecimientos industriales:</label>
+            <input type="number" id="fabricas" placeholder="Escribe un número..."><br>
+
+            <label for="otros-rubros">H.5 Cantidad comercios de venta de otros rubros:</label>
+            <input type="number" id="otros-rubros" placeholder="Escribe un número..."><br>
+
+            <label for="bancos">H.6 Cantidad de bancos y cajeros:</label>
+            <input type="number" id="bancos" placeholder="Escribe un número..."><br>
+
+            <label for="financieros">H.7 Cantidad de locales financieros:</label>
+            <input type="number" id="financieros" placeholder="Escribe un número..."><br>
+
+            <label for="ambulante">H.8 Cantidad de puestos de venta ambulante informal o ilegal:</label>
+            <input type="number" id="ambulante" placeholder="Escribe un número..."><br>
+
+            <button type="button" onclick="mostrarFormulario('formI')">Continuar</button>
+        </form>
+    </div>
+    
+    <!-- Formulario I -->
+    <div id="formI" class="form-container">
+        <h3>I.Arbolado y paisaje urbano</h3>
+        <form id="questionnaire-formI">
+            <label for="antenas">I.1 Cantidad de antenas de telefonía celular:</label>
+            <input type="number" id="antenas" placeholder="Escribe un número..."><br>
+
+            <button type="button" onclick="mostrarFormulario('formJ')">Continuar</button>
+        </form>
+    </div>    
+
+    <!-- Formulario J -->
+    <div id="formJ" class="form-container">
+        <h3>J. Contaminación ambiental</h3>
+        <form id="questionnaire-formJ">
+            <label for="agua">J.1 Cursos de agua cercanos:</label>
+            <input type="number" id="agua" placeholder="Escribe un número..."><br>
+
+            <label for="auditiva">J.2 Contaminación auditiva:</label>
+            <input type="number" id="auditiva" placeholder="Escribe un número..."><br>
+
+
+            <label for="olor">J.3 Olor:</label>
+            <input type="number" id="olor" placeholder="Escribe un número..."><br>
+
 
             <button type="submit">Finalizar</button>
         </form>
@@ -323,7 +435,7 @@
         }
 
         // Lógica para manejar el botón "Finalizar"
-        document.getElementById('questionnaire-formF').addEventListener('submit', function(e) {
+        document.getElementById('questionnaire-formJ').addEventListener('submit', function(e) {
             e.preventDefault();
 
             // Obtener todos los datos de los formularios
@@ -352,7 +464,35 @@
                 B4: document.getElementById('vehiculos-abandono').value,
                 B5: document.getElementById('grafitis').value,
                 B6: document.getElementById('espacios-recreativos').value,
-                B7: document.getElementById('espacios-vandalizados').value
+                B7: document.getElementById('espacios-vandalizados').value,
+                C1: document.getElementById('instituciones').value,
+                C2: document.getElementById('Merenderos').value,
+                C3: document.getElementById('Iglesias').value,
+                D1: document.getElementById('cantidad-lineas').value,
+                D2: document.getElementById('Comisarias-destacamentos').value,
+                D3: document.getElementById('Establecimientos-educativos').value,
+                E1: document.getElementById('lineas-colectivo').value,
+                E2: document.getElementById('semaforos').value,
+                E3: document.getElementById('sendas').value,
+                E4: document.getElementById('calles-señaletica').value,
+                E5: document.getElementById('señaletica-relacionada').value,
+                F1: document.getElementById('arboles-calle').value,
+                G1: document.getElementById('camara-privada').value,
+                G2: document.getElementById('camara-publica').value,
+                G3: document.getElementById('casetas').value,
+                G4: document.getElementById('puestos').value,
+                H1: document.getElementById('venta-alimentos').value,
+                H2: document.getElementById('servicios-personales').value,
+                H3: document.getElementById('talleres').value,
+                H4: document.getElementById('fabricas').value,
+                H5: document.getElementById('otros-rubros').value,
+                H6: document.getElementById('bancos').value,
+                H7: document.getElementById('financieros').value,
+                H8: document.getElementById('ambulante').value,
+                I1: document.getElementById('antenas').value,
+                J1: document.getElementById('agua').value,
+                J2: document.getElementById('auditiva').value,
+                J3: document.getElementById('olor').value
             };
 
             // Enviar los datos a la API de Sheet Best
