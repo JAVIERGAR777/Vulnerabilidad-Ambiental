@@ -182,43 +182,49 @@
             <input type="number" id="luminarias-convencionales-no-funcionando" placeholder="Escribe un número..."><br>
 
             <label for="cordon-asfalto">A.11 Calle con cordón y asfalto (Si / No):</label>
-            <select id="cordon-asfalto">
+            <select id="cordon-asfalto" required>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
             </select><br>
 
             <label for="solo-asfalto">A.12 Calle solo con asfalto (Si / No):</label>
             <select id="solo-asfalto">
+                <option value="" disabled selected>Selecciona una opción</option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
             </select><br>
 
             <label for="mejorado">A.13 Calle con mejorado (Si / No):</label>
             <select id="mejorado">
+                <option value="" disabled selected>Selecciona una opción</option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
             </select><br>
 
             <label for="zanja">A.14 Calle con zanja (Si / No):</label>
             <select id="zanja">
+                <option value="" disabled selected>Selecciona una opción</option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
             </select><br>
 
             <label for="baches">A.15 Calle con baches o deterioradas (Si / No):</label>
             <select id="baches">
+                <option value="" disabled selected>Selecciona una opción</option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
             </select><br>
 
             <label for="edificaciones">A.16 Calle con edificaciones ajustadas a la línea municipal (Si / No):</label>
             <select id="edificaciones">
+                <option value="" disabled selected>Selecciona una opción</option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
             </select><br>
 
             <label for="estado-vereda">A.17 Estado de la vereda (transitable / poco transitable / nada transitable):</label>
             <select id="estado-vereda">
+                <option value="" disabled selected>Selecciona una opción</option>
                 <option value="transitable">Transitable</option>
                 <option value="poco transitable">Poco transitable</option>
                 <option value="nada transitable">Nada transitable</option>
@@ -258,7 +264,7 @@
 
     <!-- Formulario C -->
     <div id="formC" class="form-container">
-        <h3>C.Capilaridad Social</h3>
+        <h3>C. Capilaridad Social</h3>
         <form id="questionnaire-formC">
             <label for="instituciones">C.1 Club / Instituciones / Sociedades de Fomento (cantidad por calle):</label>
             <input type="number" id="instituciones" placeholder="Escribe un número..."><br>
@@ -275,7 +281,7 @@
 
     <!-- Formulario D -->
     <div id="formD" class="form-container">
-        <h3>D.Capilaridad Estatal</h3>
+        <h3>D. Capilaridad Estatal</h3>
         <form id="questionnaire-formD">
             <label for="cantidad-lineas">D.1 Agencias / organismos estatales (cantidad por calle):</label>
             <input type="number" id="cantidad-lineas" placeholder="Escribe un número..."><br>
@@ -292,7 +298,7 @@
 
     <!-- Formulario E -->
     <div id="formE" class="form-container">
-        <h3>E.Accesibilidad de transporte urbano y movilidad</h3>
+        <h3>E. Accesibilidad de transporte urbano y movilidad</h3>
         <form id="questionnaire-formE">
             <label for="lineas-colectivo">E.1 Cantidad de líneas de colectivo y ramales:</label>
             <input type="number" id="lineas-colectivo" placeholder="Escribe un número..."><br>
@@ -315,7 +321,7 @@
 
     <!-- Formulario F -->
     <div id="formF" class="form-container">
-        <h3>F.Arbolado y paisaje urbano</h3>
+        <h3>F. Arbolado y paisaje urbano</h3>
         <form id="questionnaire-formF">
             <label for="arboles-calle">F.1 Cantidad de árboles por calle:</label>
             <input type="number" id="arboles-calle" placeholder="Escribe un número..."><br>
@@ -327,7 +333,7 @@
 
     <!-- Formulario G -->
     <div id="formG" class="form-container">
-        <h3>G.Arbolado y paisaje urbano</h3>
+        <h3>G. Dispositivos de Seguridad</h3>
         <form id="questionnaire-formG">
             <label for="camara-privada">G.1 Cantidad de cámaras de videovigilancia privadas:</label>
             <input type="number" id="camara-privada" placeholder="Escribe un número..."><br>
@@ -347,7 +353,7 @@
     
     <!-- Formulario H -->
     <div id="formH" class="form-container">
-        <h3>H.Actividad comercial ,industrial y financiera</h3>
+        <h3>H. Actividad comercial, industrial y financiera</h3>
         <form id="questionnaire-formH">
             <label for="venta-alimentos">H.1 Cantidad de comercios de venta de alimentos, indumentaria,tecnología / electrodomésticos:</label>
             <input type="number" id="venta-alimentos" placeholder="Escribe un número..."><br>
@@ -379,7 +385,7 @@
     
     <!-- Formulario I -->
     <div id="formI" class="form-container">
-        <h3>I.Arbolado y paisaje urbano</h3>
+        <h3>I. Conexión y Servicios de Internet</h3>
         <form id="questionnaire-formI">
             <label for="antenas">I.1 Cantidad de antenas de telefonía celular:</label>
             <input type="number" id="antenas" placeholder="Escribe un número..."><br>
