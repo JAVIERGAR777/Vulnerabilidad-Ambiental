@@ -431,7 +431,7 @@ fetch('./pj.geojson')
         var pjLayer = L.geoJSON(data, {
             style: {
                 color: 'green',
-                weight: 4
+                weight: 5
             },
             onEachFeature: function (feature, layer) {
                 var lineId = feature.properties.ID || 'Sin ID';
@@ -472,6 +472,9 @@ fetch('./pj.geojson')
         // Lógica para manejar el botón "Finalizar"
         document.getElementById('questionnaire-formJ').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            let currentDate = new Date();
+            let formattedDate = currentDate.toLocaleString(); // Esto formatea la fecha y hora
 
             // Obtener todos los datos de los formularios
             const datos = {
@@ -527,7 +530,8 @@ fetch('./pj.geojson')
                 I1: document.getElementById('antenas').value,
                 J1: document.getElementById('agua').value,
                 J2: document.getElementById('auditiva').value,
-                J3: document.getElementById('olor').value
+                J3: document.getElementById('olor').value,
+                fecha: formattedDate // Agregar la fecha y hora aquí
             };
 
             // Enviar los datos a la API de Sheet Best
