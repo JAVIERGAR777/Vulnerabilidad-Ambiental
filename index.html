@@ -431,7 +431,7 @@ fetch('./pj.geojson')
         var pjLayer = L.geoJSON(data, {
             style: {
                 color: 'green',
-                weight: 5
+                weight: 4
             },
             onEachFeature: function (feature, layer) {
                 var lineId = feature.properties.ID || 'Sin ID';
