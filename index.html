@@ -348,6 +348,9 @@
             <label for="puestos">G.4 Cantidad de puestos policiales por calle:</label>
             <input type="number" id="puestos" placeholder="Escribe un número..."><br>
 
+            <label for="alarmas-comunitarias">G.5 Cantidad de Alarmas Comunitarias:</label>
+            <input type="number" id="alarmas-comunitarias" placeholder="Escribe un número..."><br>
+
             <button type="button" onclick="mostrarFormulario('formH')">Continuar</button>
         </form>
     </div>
@@ -531,6 +534,7 @@ fetch('./pj.geojson')
                 J1: document.getElementById('agua').value,
                 J2: document.getElementById('auditiva').value,
                 J3: document.getElementById('olor').value,
+                G5: document.getElementById('alarmas-comunitarias').value,
                 fecha: formattedDate // Agregar la fecha y hora aquí
             };
 
