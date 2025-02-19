@@ -351,6 +351,12 @@
             <label for="alarmas-comunitarias">G.5 Cantidad de Alarmas Comunitarias:</label>
             <input type="number" id="alarmas-comunitarias" placeholder="Escribe un número..."><br>
 
+            <label for="cercos-electricos">G.6 Cantidad de Cercos Eléctricos:</label>
+            <input type="number" id="cercos-electricos" placeholder="Escribe un número..."><br>
+
+            <label for="carteles-monitoreo">G.7 Cantidad de Carteles de Monitoreo de Empresas de Seguridad:</label>
+            <input type="number" id="carteles-monitoreo" placeholder="Escribe un número..."><br>
+
             <button type="button" onclick="mostrarFormulario('formH')">Continuar</button>
         </form>
     </div>
@@ -535,6 +541,8 @@ fetch('./pj.geojson')
                 J2: document.getElementById('auditiva').value,
                 J3: document.getElementById('olor').value,
                 G5: document.getElementById('alarmas-comunitarias').value,
+                G6: document.getElementById('cercos-electricos').value,
+                G7: document.getElementById('carteles-monitoreo').value,
                 fecha: formattedDate // Agregar la fecha y hora aquí
             };
 
